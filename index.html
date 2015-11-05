@@ -278,132 +278,17 @@
 
       
         
-          <span itemprop="articleBody">
-            
-              <h1 id="背景">背景</h1><p>大四理工科学生，精力旺、时间多。觉得有一个自己的空间，写点自己感兴趣的东西这事挺酷的。</p>
+          <h1 id="背景">背景</h1><p>大四理工科学生，精力旺、时间多。觉得有一个自己的空间，写点自己感兴趣的东西这事挺酷的。</p>
 <h2 id="我为什么要搭建个人博客">我为什么要搭建个人博客</h2><p>博客是一个很酷的产品。虽然博客辉煌的年代已经过去，但我认为在这个后博客时代的博文会更纯粹也更精髓。</p>
 <h2 id="我要搭建一个怎么样的博客">我要搭建一个怎么样的博客</h2><ul>
 <li>免费<br>莫名其妙的原因，就是不想买域名，买空间。</li>
 <li>独立<br>独立的才是自己的。</li>
-<li>简洁<br>内容是博客的灵魂，所以博客界面必须足够简洁。我想搭建的博客看不到胡里花哨的东西，能让人只专注到内容上面。这也是我不用新浪博客、网易博客等现成博客的原因之一。</li>
-</ul>
-<h2 id="怎样去实现它">怎样去实现它</h2><p>在知乎上面瞎逛的时候，碰巧看到这样一个回答。<a href="http://www.zhihu.com/question/29755481/answer/67761834" target="_blank" rel="external">你见过最棒的个人博客是什么？温柔的回答。</a> </p>
-<p>刚好满足我对个人博客的一些幻想。所以确定了用GitHub+Hexo+Next主题的思路。</p>
-<h1 id="正题">正题</h1><p>以上是背景，接下来进入正题。</p>
-<h2 id="准备：配置开发环境">准备：配置开发环境</h2><p>依次下载安装：</p>
-<ul>
-<li><a href="https://nodejs.org/en/download/" target="_blank" rel="external">Node.js</a></li>
-<li><a href="http://git-scm.com/downloads" target="_blank" rel="external">Git</a></li>
-</ul>
-<p>怎样打开Git？</p>
-<ol>
-<li>开始界面点击Git Bash</li>
-</ol>
-<p><img src="http://upload-images.jianshu.io/upload_images/1122690-bc147dc67d6e5266.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="开始界面打开.jpg"></p>
-<ol>
-<li>进入目标文件夹鼠标右键打开Git Bash</li>
-</ol>
-<p><img src="http://upload-images.jianshu.io/upload_images/1122690-b2a035ecf4075f69.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="文件夹内鼠标右键打开.jpg"><br>推荐使用第二种方法。</p>
-<h2 id="一-_注册访问Github">一. 注册访问<a href="https://github.com/" target="_blank" rel="external">Github</a></h2><p>Github为广大开发者提供了一个非常好的平台，不仅是代码的开源，同时Github还提供了开发者可以在Github上建立自己的站点。这个功能的局限是只能创建静态的网站。</p>
-<p>注册完成后，需要验证邮箱。我第一次平时用的163邮箱，不过没有收到验证邮件。发现很多同学都遇到跟我一样的问题，换成QQ邮箱之后OK。</p>
-<p>接下来：</p>
-<ol>
-<li><p>新建Repository</p>
-<ul>
-<li>页面右上角，新建Repository<br><img src="http://upload-images.jianshu.io/upload_images/1122690-32b509e6137bd449.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="新建repository.jpg"></li>
-<li>创建yourname.github.io，打勾表示名称可用<br><img src="http://upload-images.jianshu.io/upload_images/1122690-442c6d775d1536ad.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="新建repository名称.jpg"></li>
-</ul>
-</li>
-<li><p>配置SSH-Key</p>
-<ul>
-<li>检查是否已经有SSH Key：打开Git Bash<pre><code><span class="variable">$cd</span> ~/.ssh　
-</code></pre>如果说没有这个目录，就直接看第三步。</li>
-<li>备份</li>
-<li>生成一个新的SSH。<pre><code><span class="variable">$ssh-keygen</span> -t rsa -C <span class="string">"your e-mail"</span>
-</code></pre>之后直接回车，不用填写东西。然后就生成一个目录.ssh ，里面有两个文件：id_rsa , id_rsa.pub。<br>成功之后是这样的：<br><img src="http://upload-images.jianshu.io/upload_images/1122690-138fc440b975d7e8.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="SSH-Key成功结果.jpg"></li>
-</ul>
-</li>
-</ol>
-<ul>
-<li>把这个SSH放到github上：进入account-setting ，把id_rsa.pub的内容复制进去就可以了。</li>
-</ul>
-<h2 id="二-_Hexo">二. Hexo</h2><h3 id="关于Hexo">关于Hexo</h3><ul>
-<li>快速，简单而高效的静态博客框架</li>
-</ul>
-<h3 id="Hexo初始化博客框架">Hexo初始化博客框架</h3><p>1.安装Hexo</p>
-<pre><code>$ npm <span class="operator"><span class="keyword">install</span> -<span class="keyword">g</span> hexo-cli</span>
-</code></pre><p>2.初始化框架</p>
-<pre><code><span class="variable">$ </span>hexo init &lt;yourFolder&gt;
-<span class="variable">$ </span>cd &lt;yourFolder&gt;
-<span class="variable">$ </span>npm install
-</code></pre><p>初始化完成后，指定文件夹的目录如下</p>
-<pre><code>.
-├── _config.yml <span class="comment">//网站的配置信息，您可以在此配置大部分的参数。</span>
-├── package.json
-├── scaffolds <span class="comment">//模版文件夹。当您新建文章时，Hexo 会根据 scaffold 来建立文件。</span>
-├── source <span class="comment">//资源文件夹是存放用户资源的地方。</span>
-<span class="string">| ├── _drafts</span>
-<span class="string">| └── _posts</span>
-└── themes <span class="comment">//主题文件夹。Hexo会根据主题来生成静态页面。</span>
-</code></pre><p>3.新建文章（创建一个hello world）</p>
-<pre><code>$ hexo <span class="keyword">new</span> <span class="string">"Hello World"</span>
-</code></pre><p>会在/source/_post里添加hello-world.md文件，之后新建的文章都将存放在此目录下。编辑hello-world.md文件可修改内容。</p>
-<p>4.生成网站</p>
-<pre><code><span class="variable">$ </span>hexo generate
-</code></pre><p>此时会将/source的.md文件生成到/public中，形成网站的静态文件。</p>
-<p>5.本地服务器</p>
-<pre><code>$ hexo <span class="keyword">server</span>
-</code></pre><p>输入<a href="http://localhost:4000" target="_blank" rel="external">http://localhost:4000</a> 即可查看网站。<br>可修改：</p>
-<pre><code>$ hexo server -<span class="tag">p</span> <span class="number">3000</span>
-</code></pre><p>此时，输入<a href="http://localhost:3000" target="_blank" rel="external">http://localhost:3000</a> 查看网站。</p>
-<p>6.部署网站</p>
-<pre><code><span class="variable">$ </span>hexo deploy
-</code></pre><p>部署网站之前需要生成静态文件。<br>可以用$ hexo generate -d直接生成并部署。此时需要在_config.yml中配置你所要部署的站点：</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/1122690-a5671cf56edea34c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="部署网站.jpg"></p>
-<ul>
-<li><p>到此为止完成网站的雏形。输入yourname.github.io可访问博客主页。例如：<a href="http://moyatao.github.io/" target="_blank" rel="external">http://moyatao.github.io/</a> 。<br>绕坑：<br>部署的时候有可能会出错，别急，加这一步操作就ok了</p>
-<pre><code>$ npm <span class="operator"><span class="keyword">install</span> hexo-deployer-git <span class="comment">--save</span></span>
-</code></pre><p>在此感谢知友“温柔”的帮助，这是他的博客：<a href="http://ursocute.github.io/" target="_blank" rel="external">http://ursocute.github.io/</a></p>
-</li>
-</ul>
-<p>附：</p>
-<ul>
-<li><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="external">Hexo官方帮助文档</a></li>
-</ul>
-<h2 id="三-_Next主题">三. Next主题</h2><p>NexT 主旨在于简洁优雅且易于使用，所以首先要尽量确保NexT的简洁易用性。</p>
-<p>这是一个扩展主题，由一个台湾学生<a href="https://github.com/iissnan" target="_blank" rel="external">iissnan</a>开发。主题秉承精于心，简于形的理念。</p>
-<ol>
-<li>下载Next主题         <pre><code>$ <span class="keyword">cd</span> your-hexo-site
-$ git clone http<span class="variable">s:</span>//github.<span class="keyword">com</span>/iissnan/hexo-theme-<span class="keyword">next</span> themes/<span class="keyword">next</span>
-</code></pre></li>
-<li>启用Next主题<br>下载完成后，打开站点配置文件，找到theme字段，并将其值更改为 next。<pre><code><span class="preprocessor"># Extensions</span>
-<span class="preprocessor">## Plugins: http://hexo.io/plugins/</span>
-<span class="preprocessor">## Themes: http://hexo.io/themes/</span>
-theme: next
-</code></pre></li>
-<li>验证是否可用<br>运行hexo s –debug，并访问<a href="http://localhost:4000" target="_blank" rel="external">http://localhost:4000</a> ，确保站点正确运行。</li>
-</ol>
-<p>附：</p>
-<ul>
-<li><a href="http://theme-next.iissnan.com/" target="_blank" rel="external">Next官网</a></li>
-<li><a href="https://github.com/iissnan" target="_blank" rel="external">主题作者iissnan的博客</a></li>
-</ul>
-<h2 id="四-_Markdown语法">四. Markdown语法</h2><p>Markdown 是一种「电子邮件」风格的「标记语言]，Hexo支持Markdown。</p>
-<p>打开之前生成的Hello World.md文件，惊奇地发现，就是用Markdown语法写的。<br><img src="http://upload-images.jianshu.io/upload_images/1122690-f149ae3b7b9b81ba.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Hello World.jpg"></p>
-<h3 id="Markdown_编辑器">Markdown 编辑器</h3><p>网上搜索一下，网友推荐的Markdown编辑器很多，看个人选择。我对<a href="http://www.jianshu.com/" target="_blank" rel="external">简书</a>这个产品比较有好感，用的是简书的Markdown在编辑器。效果就是酱紫滴：<br><img src="http://upload-images.jianshu.io/upload_images/1122690-8820bc5bfc009d11.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="简书在线编辑器效果.jpg"><br>备注：</p>
-<ul>
-<li>正在学习Markdown基础语法，第二篇博客内容就整理Markdown语法。</li>
-</ul>
-<p>附：</p>
-<ul>
-<li><a href="http://www.jianshu.com/p/q81RER" target="_blank" rel="external">献给写作者的 Markdown 新手指南-简书</a></li>
-<li><a href="http://www.appinn.com/markdown/#list" target="_blank" rel="external">Markdown语法说明（简体中文版）</a></li>
-</ul>
-<h1 id="感悟">感悟</h1><p>从想要搭建一个独立免费的个人博客开始，网上搜索各种资料。用过一个国外的傻瓜式软件，生成的界面太粗糙，而且不稳定。这点与我的初心不符直接放弃。</p>
-<p>瞎逛了几天之后，终于确定了用本文的方法，然后开始摸索。什么懂不懂的小白，用了三天时间，终于搭建了我的第一个个人博客<a href="moyatao.github.io">Mr H’s Blog</a>。过程中遇到了一些问题，但我这人就喜欢和自己死磕到底。感谢网友的分享和热情帮助。</p>
-
-            
-          </span>
+<li>简洁<br>内容是博客的灵魂，所以博客界面必须足够简洁。我想搭建的博客看不到胡里花哨的东西，能让人只专注到内容上面。这也是我不用新浪博客、网易博客等现成博客的原因之一。
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/11/04/我的第一篇博客：GitHub-Hexo搭建过程/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
